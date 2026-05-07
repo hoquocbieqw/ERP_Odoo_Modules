@@ -124,7 +124,7 @@ File BPMN: xem tại [Google Drive — ERP_Odoo Folder](https://drive.google.com
 
 ---
 
-## Demo & Tài liệu
+## Demo
 
 | Nội dung | Link |
 |---------|------|
@@ -132,7 +132,6 @@ File BPMN: xem tại [Google Drive — ERP_Odoo Folder](https://drive.google.com
 | Video giải thích code | [Xem trên YouTube](https://www.youtube.com/watch?v=TFS9HS9ZMRA&t=2s) |
 | Video quy trình sản xuất (BPMN demo) | [Xem trên YouTube](https://www.youtube.com/watch?v=s3KqPlECtt8&t=43s) |
 | Video quy trình bán hàng (BPMN demo) | [Xem trên YouTube](https://www.youtube.com/watch?v=o8FrZBXzG_E) |
-| Báo cáo đầy đủ | *(thêm link Google Drive)* |
 
 ---
 
