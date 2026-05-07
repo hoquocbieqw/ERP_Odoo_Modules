@@ -1,0 +1,31 @@
+<odoo>
+    <record id="view_product_category_form_inherit" model="ir.ui.view">
+        <field name="name">product.category.form.inherit</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="markup_percentage" groups="base.group_erp_manager"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_product_category_profit_tree" model="ir.ui.view">
+        <field name="name">product.category.profit.tree</field>
+        <field name="model">product.category</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="parent_id"/>
+                <field name="markup_percentage" groups="base.group_erp_manager"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_product_category_profit" model="ir.actions.act_window">
+        <field name="name">Danh mục sản phẩm</field>
+        <field name="res_model">product.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_product_category_profit_tree"/>
+    </record>
+</odoo>

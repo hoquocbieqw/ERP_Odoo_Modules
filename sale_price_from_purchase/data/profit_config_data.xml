@@ -1,0 +1,8 @@
+<odoo>
+    <data>
+        <record id="default_profit_config" model="profit.config">
+            <field name="enable_auto_price">True</field>
+            <field name="default_markup">10.0</field>
+        </record>
+    </data>
+</odoo>

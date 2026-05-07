@@ -1,0 +1,116 @@
+<odoo>
+    <record id="view_profit_config_tree" model="ir.ui.view">
+        <field name="name">profit.config.tree</field>
+        <field name="model">profit.config</field>
+        <field name="arch" type="xml">
+            <tree string="Cấu hình lợi nhuận" create="false" delete="false">
+                <field name="enable_auto_price" widget="boolean_toggle"/>
+                <field name="default_markup"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_profit_config_form" model="ir.ui.view">
+        <field name="name">profit.config.form</field>
+        <field name="model">profit.config</field>
+        <field name="arch" type="xml">
+            <form string="Cấu hình lợi nhuận" create="false" delete="false">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_auto_price"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-power-off"
+                                invisible="not enable_auto_price">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Đang bật</span>
+                            </div>
+                        </button>
+                        
+                        <button name="toggle_auto_price"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-power-off"
+                                style="color: #dc3545;"
+                                invisible="enable_auto_price">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Đã tắt</span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <div class="oe_title">
+                        <label for="enable_auto_price" class="oe_edit_only"/>
+                        <h1>
+                            <field name="enable_auto_price" widget="boolean_toggle" nolabel="1"/>
+                            <span style="margin-left: 20px;">Tính giá tự động</span>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group string="Tỷ lệ lợi nhuận mặc định" invisible="not enable_auto_price">
+                            <label for="default_markup"/>
+                            <div>
+                                <field name="default_markup" class="oe_inline" style="width: 100px;"/>
+                                <span> %</span>
+                            </div>
+                        </group>
+                    </group>
+
+                    <notebook invisible="not enable_auto_price">
+                        <page string="Hướng dẫn sử dụng">
+                            <div style="padding: 20px; background-color: #f8f9fa; border-radius: 5px; margin: 10px 0;">
+                                <h3 style="color: #875A7B;"> ⚙️  Cách hoạt động:</h3>
+                                <ul style="line-height: 1.8; margin-left: 20px;">
+                                    <li><b>Công thức:</b> Giá bán = Giá mua × (1 + Tỷ lệ lợi nhuận %)</li>
+                                    <li><b>Ưu tiên:</b> Tỷ lệ của danh mục sản phẩm > Tỷ lệ mặc định</li>
+                                    <li><b>Giá mua:</b> Lấy từ Vendor pricelist, nếu không có → Cost price</li>
+                                </ul>
+
+                                <h3 style="color: #875A7B; margin-top: 20px;"> 📊  Ví dụ:</h3>
+                                <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                                    <tr style="background-color: #875A7B; color: white;">
+                                        <th style="padding: 10px; border: 1px solid #ddd;">Giá mua</th>
+                                        <th style="padding: 10px; border: 1px solid #ddd;">Tỷ lệ</th>
+                                        <th style="padding: 10px; border: 1px solid #ddd;">Giá bán</th>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px; border: 1px solid #ddd;">100.000 VND</td>
+                                        <td style="padding: 10px; border: 1px solid #ddd;">20%</td>
+                                        <td style="padding: 10px; border: 1px solid #ddd;"><b>120.000 VND</b></td>
+                                    </tr>
+                                    <tr style="background-color: #f8f9fa;">
+                                        <td style="padding: 10px; border: 1px solid #ddd;">100.000 VND</td>
+                                        <td style="padding: 10px; border: 1px solid #ddd;">30%</td>
+                                        <td style="padding: 10px; border: 1px solid #ddd;"><b>130.000 VND</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px; border: 1px solid #ddd;">200.000 VND</td>
+                                        <td style="padding: 10px; border: 1px solid #ddd;">15%</td>
+                                        <td style="padding: 10px; border: 1px solid #ddd;"><b>230.000 VND</b></td>
+                                    </tr>
+                                </table>
+
+                                <div style="margin-top: 20px; padding: 15px; background-color: #d4edda; border-left: 4px solid #28a745; border-radius: 3px;">
+                                    <p style="margin: 0; color: #155724;">
+                                        <b> 💡  Mẹo:</b> Để cấu hình tỷ lệ riêng cho từng danh mục sản phẩm, vào:<br/>
+                                        <b>Sale → Configuration → Tỷ lệ lợi nhuận theo danh mục</b>
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_profit_config" model="ir.actions.act_window">
+        <field name="name">Cấu hình lợi nhuận</field>
+        <field name="res_model">profit.config</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+        <field name="res_id" ref="default_profit_config"/>
+    </record>
+</odoo>
